@@ -1,20 +1,86 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4451" systemVersion="13A461" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="hyS-zh-02L">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3676"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--class Prefix:identifier View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Mass Contacts View Controller-->
+        <scene sceneID="qKd-Vw-nn4">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MassContactsViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <viewController id="hyS-zh-02L" customClass="MassContactsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3Fb-Pv-TeH"/>
+                        <viewControllerLayoutGuide type="bottom" id="hqh-8H-B68"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="66Q-6s-N8N">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JIU-Oc-C8i">
+                                <rect key="frame" x="20" y="20" width="293" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Search for contacts with only an email">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickButtonSearch:" destination="hyS-zh-02L" eventType="touchUpInside" id="GBe-7U-UNp"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Results: -" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qkl-UP-bjR">
+                                <rect key="frame" x="20" y="61" width="728" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dv4-Jt-0Iv">
+                                <rect key="frame" x="699" y="90" width="49" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Delete">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickButtonDelete:" destination="hyS-zh-02L" eventType="touchUpInside" id="ovd-kE-MmU"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="hW6-QL-T8S">
+                                <rect key="frame" x="374" y="502" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l5L-Xz-4ma">
+                                <rect key="frame" x="20" y="90" width="44" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Show">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickButtonShow:" destination="hyS-zh-02L" eventType="touchUpInside" id="yLf-Et-gp6"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hW6-QL-T8S" firstAttribute="centerY" secondItem="66Q-6s-N8N" secondAttribute="centerY" id="L7M-H6-avq"/>
+                            <constraint firstItem="JIU-Oc-C8i" firstAttribute="leading" secondItem="66Q-6s-N8N" secondAttribute="leading" constant="20" symbolic="YES" id="OgW-ao-l33"/>
+                            <constraint firstItem="hW6-QL-T8S" firstAttribute="centerX" secondItem="66Q-6s-N8N" secondAttribute="centerX" id="UD9-gz-2PO"/>
+                            <constraint firstItem="l5L-Xz-4ma" firstAttribute="top" secondItem="qkl-UP-bjR" secondAttribute="bottom" constant="8" symbolic="YES" id="Wne-4g-MC6"/>
+                            <constraint firstItem="Dv4-Jt-0Iv" firstAttribute="trailing" secondItem="qkl-UP-bjR" secondAttribute="trailing" id="YET-Ce-A8W"/>
+                            <constraint firstAttribute="trailing" secondItem="Dv4-Jt-0Iv" secondAttribute="trailing" constant="20" symbolic="YES" id="bag-28-GSc"/>
+                            <constraint firstItem="qkl-UP-bjR" firstAttribute="top" secondItem="JIU-Oc-C8i" secondAttribute="bottom" constant="8" symbolic="YES" id="cBx-vB-5sL"/>
+                            <constraint firstItem="Dv4-Jt-0Iv" firstAttribute="baseline" secondItem="l5L-Xz-4ma" secondAttribute="baseline" id="fsl-62-eEi"/>
+                            <constraint firstItem="JIU-Oc-C8i" firstAttribute="top" secondItem="66Q-6s-N8N" secondAttribute="top" constant="20" symbolic="YES" id="hjU-S5-Ejl"/>
+                            <constraint firstItem="qkl-UP-bjR" firstAttribute="leading" secondItem="JIU-Oc-C8i" secondAttribute="leading" id="kzX-VA-lnr"/>
+                            <constraint firstItem="qkl-UP-bjR" firstAttribute="leading" secondItem="l5L-Xz-4ma" secondAttribute="leading" id="mCO-BF-EOM"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="hW6-QL-T8S" id="MSb-JH-Pxo"/>
+                        <outlet property="labelResults" destination="qkl-UP-bjR" id="IzY-B5-Fib"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fI0-3q-oM3" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>

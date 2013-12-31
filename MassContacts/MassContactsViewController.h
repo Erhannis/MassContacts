@@ -10,7 +10,7 @@
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
 
-@interface MassContactsViewController : UIViewController <ABPeoplePickerNavigationControllerDelegate>
+@interface MassContactsViewController : UIViewController <ABPeoplePickerNavigationControllerDelegate, UIAlertViewDelegate>
 
 - (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker;
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
@@ -19,5 +19,8 @@
       shouldContinueAfterSelectingPerson:(ABRecordRef)person
                                 property:(ABPropertyID)property
                               identifier:(ABMultiValueIdentifier)identifier;
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+- (void)alertViewCancel:(UIAlertView *)alertView;
 
 @end

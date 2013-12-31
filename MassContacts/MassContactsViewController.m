@@ -19,9 +19,6 @@
 
 @implementation MassContactsViewController
 
-//TODO Decide whether to make this more exact.
-#define FILTER_PRESET_EMAILS @".*@.*\\..*"
-
 - (void)setFilteredPeople:(NSArray *)filteredPeople
 {
     _filteredPeople = filteredPeople;
@@ -120,7 +117,7 @@
 
 - (IBAction)clickButtonShow:(id)sender {
     if (self.filteredPeople) {
-        //TODO This isn't really working.
+        //TODO The records show up buggily.
         ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
         picker.addressBook = self.book;
         picker.peoplePickerDelegate = self;
@@ -169,10 +166,35 @@
 }
 
 - (IBAction)clickButtonDelete:(id)sender {
-    //TODO Add confirmation dialog
-    if (self.book) {
-        [self performDelete];
+    if (self.book && self.filteredPeople) {
+        NSString *message = nil;
+        if (self.filteredPeople.count == 1) {
+            message = @"This will delete 1 contact.";
+        } else {
+            message = [NSString stringWithFormat:@"This will delete %d contacts.", self.filteredPeople.count];
+        }
+        UIAlertView *alert =[[UIAlertView alloc] initWithTitle:@"Delete?"
+                                                       message:message
+                                                      delegate:self
+                                             cancelButtonTitle:@"Cancel"
+                                             otherButtonTitles:@"Delete", nil];
+        [alert show];
     }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [self performDelete];
+        self.book = nil;
+        self.unfilteredPeople = nil;
+        self.filteredPeople = nil;
+        self.antifilteredPeople = nil;
+    }
+}
+
+- (void)alertViewCancel:(UIAlertView *)alertView
+{
 }
 
 - (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
