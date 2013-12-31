@@ -16,53 +16,62 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Regex Search Filter" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Og-Ka-5eu">
-                                <rect key="frame" x="20" y="20" width="224" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rwm-Y5-wzu">
+                                <rect key="frame" x="20" y="20" width="262" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Presets:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKg-hl-jQN">
+                                <state key="normal" title="Search for contacts with only an email">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickButtonSearch:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="IQK-t9-Vgo"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Results: -" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AI3-7Q-ToT">
                                 <rect key="frame" x="20" y="58" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b94-Uo-ug8">
-                                <rect key="frame" x="20" y="87" width="38" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QTL-TU-oQY">
+                                <rect key="frame" x="256" y="87" width="44" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Email">
+                                <state key="normal" title="Delete">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="clickButtonEmail:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="9Fm-Kv-Igc"/>
+                                    <action selector="clickButtonDelete:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ww9-09-zof"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rwm-Y5-wzu">
-                                <rect key="frame" x="252" y="20" width="48" height="30"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="QPg-Vw-rr7">
+                                <rect key="frame" x="150" y="274" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Search">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Results: -" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AI3-7Q-ToT">
-                                <rect key="frame" x="20" y="125" width="74" height="21"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TwI-Ac-CC7">
+                                <rect key="frame" x="20" y="87" width="39" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QTL-TU-oQY">
-                                <rect key="frame" x="20" y="154" width="44" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Delete">
+                                <state key="normal" title="Show">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QTL-TU-oQY" firstAttribute="trailing" secondItem="AI3-7Q-ToT" secondAttribute="trailing" id="4J8-kd-imR"/>
+                            <constraint firstItem="Rwm-Y5-wzu" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" symbolic="YES" id="CTe-bL-bDk"/>
+                            <constraint firstItem="QTL-TU-oQY" firstAttribute="baseline" secondItem="TwI-Ac-CC7" secondAttribute="baseline" id="Js2-KN-crW"/>
+                            <constraint firstItem="Rwm-Y5-wzu" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="20" symbolic="YES" id="N5V-FG-4i0"/>
+                            <constraint firstItem="AI3-7Q-ToT" firstAttribute="top" secondItem="Rwm-Y5-wzu" secondAttribute="bottom" constant="8" symbolic="YES" id="NBY-0I-iIz"/>
+                            <constraint firstItem="TwI-Ac-CC7" firstAttribute="top" secondItem="AI3-7Q-ToT" secondAttribute="bottom" constant="8" symbolic="YES" id="Xgw-gd-CMK"/>
+                            <constraint firstItem="QPg-Vw-rr7" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="brD-gU-pHk"/>
+                            <constraint firstItem="AI3-7Q-ToT" firstAttribute="leading" secondItem="TwI-Ac-CC7" secondAttribute="leading" id="cQY-4h-gAT"/>
+                            <constraint firstItem="AI3-7Q-ToT" firstAttribute="leading" secondItem="Rwm-Y5-wzu" secondAttribute="leading" id="cv2-It-njY"/>
+                            <constraint firstItem="QPg-Vw-rr7" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="fjJ-p3-kaL"/>
+                            <constraint firstAttribute="trailing" secondItem="QTL-TU-oQY" secondAttribute="trailing" constant="20" symbolic="YES" id="pyU-7u-Mdd"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="editSearchFilter" destination="4Og-Ka-5eu" id="59h-NQ-WXs"/>
+                        <outlet property="activityIndicator" destination="QPg-Vw-rr7" id="Rng-uj-W1R"/>
+                        <outlet property="labelResults" destination="AI3-7Q-ToT" id="Eij-cv-pec"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
