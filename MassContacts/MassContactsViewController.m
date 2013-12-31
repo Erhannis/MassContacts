@@ -7,12 +7,12 @@
 //
 
 #import "MassContactsViewController.h"
-#import <AddressBook/AddressBook.h>
 
 @interface MassContactsViewController ()
 @property (nonatomic) ABAddressBookRef book;
 @property (strong, nonatomic) NSArray *unfilteredPeople;
 @property (strong, nonatomic) NSArray *filteredPeople;
+@property (strong, nonatomic) NSArray *antifilteredPeople;
 @property (weak, nonatomic) IBOutlet UILabel *labelResults;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @end
@@ -30,7 +30,6 @@
     } else {
         self.labelResults.text = @"Results: -";
     }
-    NSLog(@"setFilteredPeople");
 }
 
 - (void)viewDidLoad
@@ -39,23 +38,30 @@
 }
 
 - (IBAction)clickButtonSearch:(id)sender {
-    //TODO Add error handling.
-    ABAddressBookRef book = ABAddressBookCreateWithOptions(NULL, NULL);
+    CFErrorRef error = nil;
+    ABAddressBookRef book = ABAddressBookCreateWithOptions(NULL, &error);
+    [self checkError:error whenAttempting:@"creating book"];
     [self.activityIndicator startAnimating];
     __weak MassContactsViewController *weakself = self;
     ABAddressBookRequestAccessWithCompletion(book, ^(bool granted, CFErrorRef error) {
-        if (granted && !error) {
-            NSLog(@"Success");
-            weakself.book = book;
-            NSArray *people = (__bridge NSArray *)ABAddressBookCopyArrayOfAllPeople(weakself.book);
-            NSArray *filteredPeople = [weakself performSearchOnPeople:people];
-            weakself.unfilteredPeople = people;
-            weakself.filteredPeople = filteredPeople;
-        } else {
-            NSLog(@"Failure");
-            weakself.book = nil;
-        }
-        [weakself.activityIndicator stopAnimating];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (granted && !error) {
+                NSLog(@"Success");
+                weakself.book = book;
+                NSArray *people = (__bridge NSArray *)ABAddressBookCopyArrayOfAllPeople(weakself.book);
+                NSArray *filteredPeople = [weakself performSearchOnPeople:people];
+                weakself.unfilteredPeople = people;
+                weakself.filteredPeople = filteredPeople;
+                NSMutableArray *antifilteredPeople = [people mutableCopy];
+                [antifilteredPeople removeObjectsInArray:filteredPeople];
+                weakself.antifilteredPeople = [antifilteredPeople copy];
+                [weakself performAntiDelete];
+            } else {
+                NSLog(@"Failure");
+                weakself.book = nil;
+            }
+            [weakself.activityIndicator stopAnimating];
+        });
     });
 }
 
@@ -112,7 +118,80 @@
     return [people filteredArrayUsingPredicate:predicate];
 }
 
+- (IBAction)clickButtonShow:(id)sender {
+    if (self.filteredPeople) {
+        //TODO This isn't really working.
+        ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
+        picker.addressBook = self.book;
+        picker.peoplePickerDelegate = self;
+        [self presentViewController:picker animated:YES completion:NULL];
+    }
+}
+
+- (void)performAntiDelete
+{
+    if (self.book && self.antifilteredPeople) {
+        for (id r in self.antifilteredPeople) {
+            ABRecordRef record = (__bridge ABRecordRef)r;
+            CFErrorRef error = nil;
+            ABAddressBookRemoveRecord(self.book, record, &error);
+            [self checkError:error whenAttempting:@"antideleting"];
+        }
+    }
+}
+
+- (void)performDelete
+{
+    if (self.filteredPeople) {
+        CFErrorRef error = nil;
+        ABAddressBookRef book = ABAddressBookCreateWithOptions(NULL, &error);
+        [self checkError:error whenAttempting:@"creating book"];
+        for (id r in self.filteredPeople) {
+            ABRecordRef record = (__bridge ABRecordRef)r;
+            error = nil;
+            ABAddressBookRemoveRecord(book, record, &error);
+            [self checkError:error whenAttempting:@"deleting"];
+        }
+        error = nil;
+        ABAddressBookSave(book, &error);
+        [self checkError:error whenAttempting:@"saving"];
+    }
+}
+
+- (void)checkError:(CFErrorRef)error
+    whenAttempting:(NSString *)thingAttempted
+{
+    if (error) {
+        NSError *err = (__bridge NSError*)error;
+        NSLog(@"error %@: %@", thingAttempted, err);
+        CFRelease(error);
+    }
+}
+
 - (IBAction)clickButtonDelete:(id)sender {
+    //TODO Add confirmation dialog
+    if (self.book) {
+        [self performDelete];
+    }
+}
+
+- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
+{
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
+      shouldContinueAfterSelectingPerson:(ABRecordRef)person
+{
+    return YES;
+}
+
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
+      shouldContinueAfterSelectingPerson:(ABRecordRef)person
+                                property:(ABPropertyID)property
+                              identifier:(ABMultiValueIdentifier)identifier
+{
+    return YES;
 }
 
 @end
