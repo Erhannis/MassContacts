@@ -22,6 +22,7 @@
 		C70957CC1872461800ADA90F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C70957AB1872461800ADA90F /* UIKit.framework */; };
 		C70957D41872461800ADA90F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C70957D21872461800ADA90F /* InfoPlist.strings */; };
 		C70957D61872461800ADA90F /* MassContactsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C70957D51872461800ADA90F /* MassContactsTests.m */; };
+		C70957E01872499D00ADA90F /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C70957DF1872499D00ADA90F /* AddressBook.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		C70957D11872461800ADA90F /* MassContactsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MassContactsTests-Info.plist"; sourceTree = "<group>"; };
 		C70957D31872461800ADA90F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C70957D51872461800ADA90F /* MassContactsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MassContactsTests.m; sourceTree = "<group>"; };
+		C70957DF1872499D00ADA90F /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C70957E01872499D00ADA90F /* AddressBook.framework in Frameworks */,
 				C70957AA1872461800ADA90F /* CoreGraphics.framework in Frameworks */,
 				C70957AC1872461800ADA90F /* UIKit.framework in Frameworks */,
 				C70957A81872461800ADA90F /* Foundation.framework in Frameworks */,
@@ -103,6 +106,7 @@
 		C70957A61872461800ADA90F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C70957DF1872499D00ADA90F /* AddressBook.framework */,
 				C70957A71872461800ADA90F /* Foundation.framework */,
 				C70957A91872461800ADA90F /* CoreGraphics.framework */,
 				C70957AB1872461800ADA90F /* UIKit.framework */,

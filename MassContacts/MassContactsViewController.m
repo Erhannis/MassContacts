@@ -9,21 +9,21 @@
 #import "MassContactsViewController.h"
 
 @interface MassContactsViewController ()
-
+@property (weak, nonatomic) IBOutlet UITextField *editSearchFilter;
 @end
 
 @implementation MassContactsViewController
 
+//TODO Decide whether to make this more exact.
+#define FILTER_PRESET_EMAILS @".*@.*\\..*"
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)clickButtonEmail:(id)sender {
+    self.editSearchFilter.text = FILTER_PRESET_EMAILS;
 }
 
 @end
