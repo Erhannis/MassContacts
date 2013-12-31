@@ -1,0 +1,7 @@
+Hey, I'm releasing this under the Apache License 2.0.  It was originally going to be a simple app to help a friend; she updated her iOS and it imported like 7000 email addresses into her contacts.  The app deletes any contact having only an email address.  I wrote up the app, and then checked the app store - as you might expect, it turns out that there are a number of apps that accomplish similar goals.  But hey, now I know how to deal with the Address Book API.
+
+Also, it was originally going to allow regex matching of any given field, but accounting for all the fields was going to be a pain, so I didn't.
+
+Anyway, I'm putting this here for others' reference and use.
+
+-Erhannis
